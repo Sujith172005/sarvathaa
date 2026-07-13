@@ -1,0 +1,19 @@
+Sarvathaa email sending setup
+
+Admin panel now does this when you create a student login:
+1. Saves username and password in the admin student list.
+2. Shows WhatsApp send button.
+3. If student email is entered and SMTP is configured, sends the login details by email automatically.
+4. If SMTP is not configured, student creation still works and an "Open Email" button appears as fallback.
+
+Add these values in your server .env or system environment:
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USERNAME=yourgmail@gmail.com
+SMTP_PASSWORD=your-gmail-app-password
+SMTP_FROM_EMAIL=yourgmail@gmail.com
+SMTP_FROM_NAME=Sarvathaa Team
+SMTP_USE_TLS=true
+PUBLIC_LOGIN_URL=https://www.sarvathaa.com/course-login.html
+
+For Gmail, use an App Password, not your normal Gmail password.

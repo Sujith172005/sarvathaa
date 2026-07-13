@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="Sarvathaa Training Center" name="description" />
+    <title>Sarvathaa Teaching Practice Training Center</title>
+    <link href="assets/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
+    <div class="topbar">
+        <div class="topbar-inner">
+            <div class="topbar-location">📍 Indiranagar, Bangalore</div>
+            <div class="topbar-right">
+                <span>⏰ Mon–Sat: 9:00 AM – 7:00 PM</span>
+                <a href="tel:+917904336537">📞 +91 79043 36537</a>
+            </div>
+        </div>
+    </div>
+    <header class="header">
+        <nav class="nav centered-nav">
+            <a class="brand mobile-brand" href="index.html"><img alt="Sarvathaa Logo"
+                    src="assets/images/sarvathaa-logo.png" /></a>
+            <button aria-label="Open menu" class="hamburger" type="button">☰</button>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <div class="dropdown"><button class="dropbtn" type="button">Practice Area ▾</button>
+                    <div class="dropdown-menu">
+                        <a href="practice-piping.html">Piping Practice</a>
+                        <a href="practice-chocolate-garnish.html">Chocolate Garnish</a>
+                        <a href="practice-baking.html">Baking - Cakes &amp; Cookies</a>
+                        <a href="practice-icing-cake.html">Icing Cake</a>
+                    </div>
+                </div>
+                <div class="dropdown"><button class="dropbtn" type="button">Teaching Videos ▾</button>
+                    <div class="dropdown-menu">
+                        <a href="teaching-videos.html#piping">Piping</a>
+                        <a href="teaching-videos.html#chocolate-garnish">Chocolate Garnish</a>
+                        <a href="teaching-videos.html#baking">Baking - Cakes &amp; Cookies</a>
+                        <a href="teaching-videos.html#icing">Icing Cake</a>
+                        <a href="teaching-videos.html#creams">Creams</a>
+                        <a href="teaching-videos.html#mousselines">Mousselines</a>
+                        <a href="teaching-videos.html#ganache">Ganache</a>
+                    </div>
+                </div>
+
+                <div class="dropdown"><button class="dropbtn" type="button">Baking Items ▾</button>
+                    <div class="dropdown-menu wide-menu">
+                        <a href="ingredients.html">Ingredients</a>
+                        <a href="equipment.html">Equipment</a>
+                        <a href="tools.html">Tools</a>
+                        <a href="bakeware-moulds.html">Bakeware / Moulds</a>
+                        <a href="measuring-tools.html">Measuring Tools</a>
+                        <a href="pre-essentials.html">Pre Essentials</a>
+                        <a href="utensils.html">Utensils</a>
+                    </div>
+                </div><a class="brand nav-brand-center" href="index.html"><img alt="Sarvathaa Logo"
+                        src="assets/images/sarvathaa-logo.png" /></a>
+                <div class="dropdown"><button class="dropbtn" type="button">Packaging ▾</button>
+                    <div class="dropdown-menu">
+                        <a href="paper-bags.html">Paper Bags</a>
+                        <a href="paper-boxes.html">Paper Boxes</a>
+                        <a href="plastic-boxes.html">Plastic Boxes</a>
+                    </div>
+                </div>
+                <a href="incubation-center.html">Incubation Center</a>
+                <a href="business-it-support.html">IT Support</a>
+                <a class="course-login-nav" href="course-login.html">Login</a>
+            </div>
+        </nav>
+    </header>
+    <section class="page-hero">
+        <h1>Admin - Student Access</h1>
+        <p>Add paid students after verifying QR payment screenshot.</p>
+    </section>
+    <section class="section">
+        <div class="container admin-layout">
+            <div class="login-card">
+                <h2>Add Student</h2>
+                <form class="course-form" id="addStudentForm"><label>Name<input id="studentName"
+                            required="" /></label><label>Email <span class="optional-text">(optional)</span><input
+                            id="studentEmail" type="email" /></label><label>WhatsApp Number<input id="studentPhone"
+                            required="" /></label><label>Username<input id="studentUsername" placeholder="piping001"
+                            required="" /></label><label>Password<input id="studentPassword"
+                            placeholder="Create password" required="" /></label><label>Course<select id="studentCourse"
+                            required="">
+                            <option value="piping">Piping Masterclass</option>
+                            <option value="chocolate-garnish">Chocolate Garnish</option>
+                            <option value="baking">Baking - Cakes &amp; Cookies</option>
+                            <option value="icing-cake">Icing Cake</option>
+                            <option value="creams">Creams</option>
+                            <option value="mousselines">Mousselines</option>
+                            <option value="ganache">Ganache</option>
+                        </select></label><label>Access Valid Until<input id="studentExpiryDate" required=""
+                            type="date" /></label><button class="btn" type="submit">Create Login</button>
+                    <p class="form-message" id="addStudentMessage"></p>
+                </form>
+            </div>
+            <div class="login-card coupon-control-card">
+                <h2>Coupon Control</h2>
+                <p class="muted admin-table-help">Create 10% discount codes, set 6 month expiry, active/off status, and delete old coupons.</p>
+                <form class="course-form" id="couponForm">
+                    <label>Coupon Code<input id="couponCode" placeholder="Enter coupon code" required /></label>
+                    <div class="form-two-col">
+                        <label>Discount Type<select id="couponType"><option value="percent">Percent %</option><option value="amount">Fixed Amount ₹</option></select></label>
+                        <label>Discount Value<input id="couponValue" type="number" min="1" step="1" value="10" required /></label>
+                    </div>
+                    <div class="form-two-col">
+                        <label>Start Date<input id="couponStart" type="date" required /></label>
+                        <label>Expiry Date<input id="couponExpiry" type="date" required /></label>
+                    </div>
+                    <label class="coupon-active-check"><input id="couponActive" type="checkbox" checked /> Active coupon</label>
+                    <button class="btn" type="submit">Save Coupon</button>
+                    <p class="form-message" id="couponMessageAdmin"></p>
+                </form>
+                <div class="coupon-list" id="couponList"></div>
+            </div>
+            <div class="admin-table-card">
+                <div class="student-topbar">
+                    <div>
+                        <h2>Students</h2>
+                        <p class="muted admin-table-help">View onboarding details, search by name/mobile, edit
+                            information and export to Excel.</p>
+                    </div><button class="btn secondary" id="adminLogoutBtn">Logout</button>
+                </div>
+                <div class="admin-toolbar"><input id="studentSearchInput"
+                        placeholder="Search name or mobile number" /><button class="btn secondary" id="studentSearchBtn"
+                        type="button">Search</button><button class="btn" id="exportStudentsBtn" type="button">Export
+                        Excel</button></div>
+                <div class="table-scroll">
+                    <table class="student-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Login</th>
+                                <th>Course</th>
+                                <th>Registration</th>
+                                <th>Profile</th>
+                                <th>Status</th>
+                                <th class="actions-head">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-grid footer-grid-contact">
+            <div class="footer-brand">
+                <img alt="Sarvathaa" src="assets/images/sarvathaa-logo.png" />
+                <p>Offline practice area, teaching videos, incubation center, bakery essentials and packaging support.
+                </p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <a href="practice-area.html">Practice Area</a>
+                <a href="teaching-videos.html">Teaching Videos</a>
+                <a href="incubation-center.html">Incubation Center</a>
+                <a href="business-it-support.html">IT Support</a>
+                <a class="course-login-nav" href="course-login.html">Login</a>
+            </div>
+            <div>
+                <h3>Bakery Items</h3>
+                <a href="ingredients.html">Ingredients</a>
+                <a href="equipment.html">Equipment</a>
+                <a href="tools.html">Tools</a>
+                <a href="packaging.html">Packaging</a>
+            </div>
+            <div class="footer-contact">
+                <h3>Contact</h3>
+                <p><strong>Phone:</strong> <a href="tel:+917904336537">7904336537</a></p>
+                <p><strong>Address:</strong> Indiranagar, Bangalore</p>
+                <p><strong>Email:</strong> sarvathaa</p>
+                <a class="footer-wa" data-wa="Hi Sarvathaa Team, I want to contact you." href="#">Contact on
+                    WhatsApp</a>
+            </div>
+        </div>
+        <div class="copyright">© 2026 Sarvathaa. All rights reserved.</div>
+    </footer>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/course-app.js"></script>
+</body>
+
+</html>

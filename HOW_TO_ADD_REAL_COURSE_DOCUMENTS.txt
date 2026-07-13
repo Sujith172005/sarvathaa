@@ -1,0 +1,33 @@
+HOW TO ADD YOUR REAL COURSE DOCUMENTS
+
+1. Convert your raw course note document to PDF.
+   Example: Piping course note -> piping.pdf
+
+2. Put the PDF inside:
+   private_course_docs/
+
+3. Use these exact file names:
+   piping.pdf
+   chocolate-garnish.pdf
+   baking.pdf
+   icing-cake.pdf
+   creams.pdf
+   mousselines.pdf
+   ganache.pdf
+
+4. Student flow:
+   Login -> My Courses -> Course Notes -> Click & View
+
+5. Protection added:
+   - File is not inside public assets folder
+   - Direct URL will not open without student login
+   - Student must have bought that course
+   - Student must complete mandatory form
+   - Right-click/print/copy shortcut disabled on the viewer area
+   - PDF toolbar is hidden using browser PDF viewer options
+
+Important:
+No website can 100% stop screenshots or screen recording. This setup blocks normal direct download/share and public access.
+
+VPS restart after uploading/changing app.py:
+sudo systemctl restart sarvathaa
