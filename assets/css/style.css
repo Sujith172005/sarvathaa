@@ -12,7 +12,8 @@
 }
 
 * {
-  box-sizing: border-box
+  box-sizing: border-box;
+  margin: 0;
 }
 
 html {
@@ -268,7 +269,7 @@ img {
 }
 
 .container {
-  max-width: 1180px;
+  max-width: 1280px;
   margin: auto
 }
 
@@ -8104,6 +8105,7 @@ body {
   margin:8px 0 0;
   color:#6a5462;
   font-size:.94rem;
+
 }
 
 .payment-subtext{
@@ -8120,3 +8122,132 @@ body {
 
 .payment-qr-info{display:flex;flex-direction:column;justify-content:center;}
 .payment-steps-mini li{margin-bottom:4px;}
+
+
+/* ============================================================
+   SARVATHAA ABOUT PAGE ONLY
+   Scoped to .sarvathaa-about-* so other pages are untouched.
+   ============================================================ */
+.sarvathaa-about-section {
+  background: linear-gradient(180deg, #fffafc 0%, #fff 52%, #fff8ef 100%);
+  padding-top: 72px;
+  padding-bottom: 82px;
+}
+
+.sarvathaa-about-container {
+  max-width: 1280px;
+}
+
+.sarvathaa-about-heading {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.sarvathaa-about-heading .section-kicker {
+  margin-bottom: 8px;
+}
+
+.sarvathaa-about-heading h2 {
+  margin: 0;
+  font-size: clamp(30px, 2.5vw, 46px);
+}
+
+.sarvathaa-about-intro {
+  max-width: none;
+  margin: 0 0 1px;
+  text-align: left;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.sarvathaa-about-intro p {
+  margin: 0 0 12px;
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  text-align: justify;
+}
+
+.sarvathaa-about-intro p:last-child {
+  margin-bottom: 0;
+}
+
+.sarvathaa-about-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+}
+
+.sarvathaa-about-image-card {
+  overflow: hidden;
+  border-radius: 28px;
+  background: #fff;
+  border: 1px solid rgba(196,45,99,.12);
+  box-shadow: 0 18px 45px rgba(93,35,55,.12);
+}
+
+.sarvathaa-about-image-card img {
+  display: block;
+  width: 100%;
+  height: 450px;
+  aspect-ratio: 8/ 8;
+  object-fit: cover;
+}
+
+.sarvathaa-about-content {
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+}
+
+.sarvathaa-about-content h2 {
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+.sarvathaa-about-content h3 {
+  margin-top: 10px;
+  margin-bottom: 1px;
+}
+
+.sarvathaa-about-content p {
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  text-align: justify;
+}
+
+.sarvathaa-about-content .clean-list {
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .sarvathaa-about-section {
+    padding: 52px 16px 64px;
+  }
+
+  .sarvathaa-about-intro {
+    margin-bottom: 30px;
+    padding: 0;
+    text-align: left;
+  }
+
+  .sarvathaa-about-main {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .sarvathaa-about-image-card img {
+    aspect-ratio: 16 / 10;
+  }
+
+  .sarvathaa-about-content {
+    padding: 0;
+  }
+}
