@@ -75,13 +75,10 @@ img {
   padding: 8px 16px;
   font-size: 14px
 }
-
 .header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: #fff;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, .06)
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .nav {
@@ -265,11 +262,11 @@ img {
 }
 
 .section {
-  padding: 75px 18px
+  padding: 25px 18px
 }
 
 .container {
-  max-width: 1280px;
+  max-width: 1240px;
   margin: auto
 }
 
@@ -284,9 +281,11 @@ img {
 }
 
 .section-title p {
+  font-size: 19px;
   color: var(--muted);
   margin: 8px auto 0;
   max-width: 700px
+
 }
 
 .grid {
@@ -718,7 +717,7 @@ body {
 }
 .grid > .service-card {
   display: grid;
-  grid-template-columns: 62px 1fr;
+  grid-template-columns: 92px 1fr;
   column-gap: 20px;
   align-items: center;
 }
@@ -742,6 +741,8 @@ body {
   grid-column: 1 / -1;
   grid-row: 2;
   margin-top: 14px;
+  color: var(--text);
+  font-size: 17px;
 }
 
 @keyframes shine {
@@ -2101,7 +2102,7 @@ body {
   padding: 0 !important;
   display: block !important;
   overflow: hidden !important;
-  background: #210f16 !important;
+  background: #ffffff !important;
 }
 
 .slider-track,
@@ -2111,12 +2112,15 @@ body {
 }
 
 .hero-slide {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, .95fr);
+  gap: clamp(28px, 4vw, 52px);
   align-items: center;
   opacity: 0;
   visibility: hidden;
   transition: opacity .8s ease, visibility .8s ease;
-  background: linear-gradient(90deg, rgba(45, 23, 32, .84), rgba(45, 23, 32, .46), rgba(45, 23, 32, .12)), var(--slide-img) center/cover no-repeat;
+  background: #ffffff;
+  padding: 42px clamp(70px, 8vw, 120px);
 }
 
 .hero-slide.active {
@@ -2126,10 +2130,12 @@ body {
 }
 
 .slide-content {
-  max-width: 760px;
-  margin-left: clamp(22px, 8vw, 110px);
-  margin-right: 90px;
-  color: #fff;
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 680px;
+  margin: 0;
+  color: #111111;
   animation: slideText .7s ease both;
 }
 
@@ -2137,11 +2143,26 @@ body {
   animation: slideText .85s ease both;
 }
 
+.slide-media {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 390px;
+  border-radius: 28px;
+  overflow: hidden;
+  background-image: var(--slide-img);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .34);
+  border: 1px solid rgba(255, 255, 255, .14);
+}
+
 .home-slider .eyebrow {
   display: inline-flex;
-  background: rgba(255, 255, 255, .16);
-  border: 1px solid rgba(255, 255, 255, .28);
-  color: #ffe5ef;
+  background: #fff0f5;
+  border: 1px solid #f1bfd0;
+  color: var(--rose-dark);
   border-radius: 999px;
   padding: 8px 14px;
   margin-bottom: 14px;
@@ -2149,38 +2170,50 @@ body {
 }
 
 .home-slider h1 {
-  font-size: clamp(34px, 6vw, 72px);
-  line-height: 1.02;
+  font-size: clamp(34px, 5vw, 68px);
+  line-height: 1.04;
   margin: 0 0 18px;
-  text-shadow: 0 6px 22px rgba(0, 0, 0, .35);
+  text-shadow: none;
 }
 
 .home-slider p {
-  font-size: clamp(17px, 2vw, 21px);
-  color: #fff8fb;
-  max-width: 680px;
+  font-size: clamp(17px, 1.6vw, 21px);
+  color: #222222;
+  max-width: 650px;
   margin: 0 0 26px;
-  text-shadow: 0 3px 16px rgba(0, 0, 0, .35);
+  text-shadow: none;
+}
+
+.home-slider .btn.primary {
+  background: var(--rose) !important;
+  color: #ffffff !important;
+  border: 0 !important;
+  box-shadow: 0 10px 24px rgba(196, 45, 99, .22) !important;
+}
+
+.home-slider .btn.primary:hover {
+  background: var(--rose-dark) !important;
+  color: #ffffff !important;
 }
 
 .slider-arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 5;
+  z-index: 6;
   width: 50px;
   height: 50px;
-  border: 1px solid rgba(255, 255, 255, .42);
+  border: 1px solid #e3a9bd;
   border-radius: 50%;
-  background: rgba(255, 255, 255, .18);
-  color: #fff;
+  background: #ffffff;
+  color: var(--rose-dark);
   font-size: 44px;
   line-height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  backdrop-filter: blur(8px);
+  backdrop-filter: none;
   transition: .25s;
 }
 
@@ -2190,20 +2223,15 @@ body {
   transform: translateY(-50%) scale(1.08);
 }
 
-.slider-prev {
-  left: 24px;
-}
-
-.slider-next {
-  right: 24px;
-}
+.slider-prev { left: 24px; }
+.slider-next { right: 24px; }
 
 .slider-dots {
   position: absolute;
   left: 50%;
   bottom: 26px;
   transform: translateX(-50%);
-  z-index: 5;
+  z-index: 6;
   display: flex;
   gap: 10px;
 }
@@ -2212,8 +2240,8 @@ body {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, .86);
-  background: rgba(255, 255, 255, .32);
+  border: 1px solid #c98aa5;
+  background: #ead2dc;
   cursor: pointer;
   transition: .25s;
 }
@@ -2221,19 +2249,12 @@ body {
 .slider-dot.active {
   width: 34px;
   border-radius: 999px;
-  background: #fff;
+  background: var(--rose);
 }
 
 @keyframes slideText {
-  from {
-    opacity: 0;
-    transform: translateY(24px)
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0)
-  }
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media(max-width:1180px) and (min-width:901px) {
@@ -2322,15 +2343,26 @@ body {
   }
 
   .home-slider {
-    min-height: 68vh !important;
+    min-height: 72vh !important;
   }
 
   .hero-slide {
-    background: linear-gradient(90deg, rgba(45, 23, 32, .88), rgba(45, 23, 32, .58)), var(--slide-img) center/cover no-repeat;
+    grid-template-columns: 1fr !important;
+    gap: 18px !important;
+    align-content: center !important;
+    padding: 28px 58px 58px 22px !important;
   }
 
   .slide-content {
-    margin: 0 58px 0 22px;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .slide-media {
+    min-height: 230px !important;
+    width: 100% !important;
+    max-height: 260px !important;
+    border-radius: 22px !important;
   }
 
   .slider-arrow {
@@ -2360,11 +2392,17 @@ body {
   }
 
   .home-slider {
-    min-height: 72vh !important;
+    min-height: 78vh !important;
   }
 
-  .slide-content {
-    margin: 0 48px 0 18px;
+  .hero-slide {
+    padding: 24px 48px 48px 18px !important;
+  }
+
+  .slide-media {
+    min-height: 190px !important;
+    max-height: 210px !important;
+    border-radius: 20px !important;
   }
 
   .home-slider h1 {
@@ -2744,8 +2782,8 @@ body {
   font-weight: 800 !important;
   border-radius: 999px !important;
   font-size: 14px !important;
-  grid-column: 10 !important;
-  justify-self: end !important;
+  grid-column: 8 !important;
+  justify-self: center !important;
 }
 
 .centered-nav .nav-links a.course-login-nav:hover {
@@ -4852,15 +4890,17 @@ body {
 
 /* ===== USER REQUEST FINAL: BIG CENTER LOGO + RIGHT SIDE NAV GROUP ===== */
 @media (min-width:901px) {
-  .header .nav.centered-nav {
-    max-width: 1320px !important;
-    min-height: 110px !important;
-    padding: 10px 26px !important;
-    background: #ffffff !important;
+.header .centered-nav {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 10px 40px !important;
+    box-sizing: border-box !important;
+
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-  }
+}
 
   .header .centered-nav .nav-links {
     width: 100% !important;
@@ -5036,15 +5076,12 @@ body {
     background: #fff !important;
   }
 
-  .header .nav.centered-nav {
-    max-width: 1380px !important;
-    min-height: 108px !important;
-    padding: 10px 18px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    overflow: visible !important;
-  }
+  .header .centered-nav {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+}
 
   .header .centered-nav .mobile-brand,
   .header .centered-nav .hamburger {
@@ -5073,8 +5110,8 @@ body {
     left: auto !important;
     top: auto !important;
     grid-column: 6 !important;
-    width: 230px !important;
-    min-width: 230px !important;
+    width: 200px !important;
+    min-width: 200px !important;
     height: 92px !important;
     margin: 0 !important;
     display: flex !important;
@@ -5082,14 +5119,14 @@ body {
     justify-content: center !important;
     background: transparent !important;
     z-index: 2 !important;
-    flex: 0 0 230px !important;
+    flex: 0 0 200px !important;
   }
 
   .header .centered-nav .nav-brand-center img {
-    width: 220px !important;
-    min-width: 220px !important;
+    width: 210px !important;
+    min-width: 200px !important;
     max-width: 200px !important;
-    max-height: 120px !important;
+    max-height: 110px !important;
     height: auto !important;
     object-fit: contain !important;
     background: transparent !important;
@@ -5099,9 +5136,6 @@ body {
     box-shadow: none !important;
   }
 
-  .header .centered-nav .nav-brand-center+.dropdown {
-    margin-left: 30px !important;
-  }
 
   .header .centered-nav .nav-links a:not(.brand):not(.course-login-nav),
   .header .centered-nav .dropbtn {
@@ -8376,8 +8410,8 @@ body {
 }
 
 .other-business-logo-wrap {
-  width: 132px;
-  min-height: 88px;
+  width: 162px;
+  min-height: 100px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -8385,8 +8419,8 @@ body {
 }
 
 .other-business-logo {
-  max-width: 132px;
-  max-height: 92px;
+  max-width: 162px;
+  max-height: 100px;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -8487,65 +8521,6 @@ body {
   }
 }
 
-/* FINAL NAVBAR ORDER FIX
-   Correct desktop order:
-   Home | About us | Baking Skills Center | Bake to Business Program
-   | Logo | Direct supply solutions | Incubation Center | Login
-*/
-@media (min-width: 901px) {
-  .header .centered-nav .nav-links {
-    display: grid !important;
-    grid-template-columns: max-content max-content max-content max-content 230px max-content max-content max-content !important;
-    align-items: center !important;
-    justify-content: center !important;
-    column-gap: 15px !important;
-    row-gap: 0 !important;
-    white-space: nowrap !important;
-  }
-
-  .header .centered-nav .nav-brand-center {
-    grid-column: 5 !important;
-    grid-row: 1 !important;
-    width: 230px !important;
-    min-width: 230px !important;
-    margin: 0 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    position: static !important;
-    transform: none !important;
-  }
-
-  .header .centered-nav .course-login-nav {
-    grid-column: 8 !important;
-    grid-row: 1 !important;
-    position: relative !important;
-    top: auto !important;
-    right: auto !important;
-    left: auto !important;
-    transform: none !important;
-    justify-self: center !important;
-  }
-}
-
-@media (max-width: 1280px) and (min-width: 901px) {
-  .header .centered-nav .nav-links {
-    grid-template-columns: max-content max-content max-content max-content 190px max-content max-content max-content !important;
-    column-gap: 8px !important;
-  }
-
-  .header .centered-nav .nav-brand-center {
-    grid-column: 5 !important;
-    width: 190px !important;
-    min-width: 190px !important;
-  }
-
-  .header .centered-nav .course-login-nav {
-    grid-column: 8 !important;
-  }
-}
-
-
 /* =====================================================
    LOWER INITIAL INVESTMENT CARD ONLY
    Icon LEFT + Heading RIGHT
@@ -8599,5 +8574,192 @@ body {
   .grid > .service-card:first-child p {
     grid-column: 1 / -1;
     margin-top: 14px;
+  }
+}
+
+/* =========================================================
+   CLEAN FINAL DESKTOP NAVBAR
+   Full-width, centered, spacious navigation.
+   HTML order:
+   Home | About | Bake to Business | Baking skill center | Logo |
+   Direct supply | Incubation Center | Login | WhatsApp
+   ========================================================= */
+@media (min-width: 901px) {
+  .header {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .header .centered-nav {
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 118px !important;
+    margin: 0 !important;
+    padding: 10px 36px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: visible !important;
+  }
+
+  .header .centered-nav .nav-links {
+    width: 100% !important;
+    max-width: 1600px !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    display: grid !important;
+    grid-template-columns:
+      max-content
+      max-content
+      max-content
+      max-content
+      160px
+      max-content
+      max-content
+      max-content
+      10px
+      30px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    column-gap: 24px !important;
+    row-gap: 0 !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+  }
+
+  /* 1 Home */
+  .header .centered-nav .nav-links > :nth-child(1) {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+
+  /* 2 About us */
+  .header .centered-nav .nav-links > :nth-child(2) {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+  }
+
+  /* 3 Bake to Business dropdown */
+  .header .centered-nav .nav-links > :nth-child(3) {
+    grid-column: 3 !important;
+    grid-row: 1 !important;
+  }
+
+  /* 4 Baking skill center */
+  .header .centered-nav .nav-links > :nth-child(4) {
+    grid-column: 4 !important;
+    grid-row: 1 !important;
+  }
+
+  /* 5 Logo */
+  .header .centered-nav .nav-links > .nav-brand-center {
+    grid-column: 5 !important;
+    grid-row: 1 !important;
+    width: 180px !important;
+    min-width: 180px !important;
+    max-width: 180px !important;
+    height: 96px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: static !important;
+    transform: none !important;
+  }
+
+  .header .centered-nav .nav-brand-center img {
+    width: 170px !important;
+    max-width: 170px !important;
+    height: auto !important;
+    margin: 0 !important;
+    display: block !important;
+    object-fit: contain !important;
+  }
+
+  /* 6 Direct supply solutions */
+  .header .centered-nav .nav-links > :nth-child(6) {
+    grid-column: 6 !important;
+    grid-row: 1 !important;
+  }
+
+  /* 7 Incubation Center */
+  .header .centered-nav .nav-links > :nth-child(7) {
+    grid-column: 7 !important;
+    grid-row: 1 !important;
+  }
+
+  /* 8 Login — always before WhatsApp */
+  .header .centered-nav .nav-links > .course-login-nav {
+    grid-column: 8 !important;
+    grid-row: 1 !important;
+    justify-self: center !important;
+    position: static !important;
+    transform: none !important;
+    margin: 0 !important;
+  }
+
+  /* 9 WhatsApp — immediately after Login */
+  .header .centered-nav .nav-links > .nav-whatsapp {
+    grid-column: 9 !important;
+    grid-row: 1 !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    justify-self: center !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    color: #000 !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
+  }
+
+  .header .centered-nav .nav-whatsapp i {
+    color: #25D366 !important;
+    font-size: 30px !important;
+    line-height: 1 !important;
+    filter: none !important;
+  }
+
+  /* 10 Instagram — immediately after WhatsApp */
+  .header .centered-nav .nav-links > .nav-instagram {
+    grid-column: 10 !important;
+    grid-row: 1 !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    justify-self: center !important;
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    color: #000 !important;
+    text-decoration: none !important;
+    line-height: 1 !important;
+  }
+
+  .header .centered-nav .nav-instagram i {
+    background: linear-gradient(45deg, #F58529 0%, #DD2A7B 45%, #8134AF 70%, #515BD4 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    color: transparent !important;
+    font-size: 30px !important;
+    line-height: 1 !important;
+    filter: none !important;
   }
 }
