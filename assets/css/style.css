@@ -8563,7 +8563,6 @@ body {
 .grid > .service-card:first-child p {
   grid-column: 1 / -1;
   grid-row: 2;
-  margin-top: 14px;
 }
 
 /* Mobile */
@@ -8956,5 +8955,63 @@ body {
 @media (max-width: 600px) {
   .incubation-qa-section .incubation-qa-whatsapp i {
     font-size: 23px !important;
+  }
+}
+
+/* =====================================================
+   INCUBATION CENTRE - FACILITIES IMAGES
+   Smaller cards + centered titles/descriptions
+   ONLY for Facilities Available in Incubation Centre
+   ===================================================== */
+.facilities-grid > .service-card {
+  display: flex !important;
+  flex-direction: column;
+  padding: 0 1px 14px !important;
+  overflow: hidden;
+  text-align: center;
+}
+
+.facilities-grid > .service-card .facility-image {
+  display: block;
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  margin: 0 1px 10px;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.facilities-grid > .service-card h3 {
+  text-align: center;
+  margin: 4px 0 6px;
+  line-height: 1.25;
+}
+
+.facilities-grid > .service-card p {
+  text-align: center;
+  margin: 0;
+  line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+  .facilities-grid > .service-card .facility-image {
+    height: 150px;
+  }
+}
+
+@media (max-width: 600px) {
+  .facilities-grid > .service-card {
+    padding: 0 10px 12px !important;
+  }
+
+  .facilities-grid > .service-card .facility-image {
+    height: 135px;
+    object-fit: contain;
+    object-position: center;
+    margin-bottom: 10px;
+  }
+
+  .facilities-grid > .service-card h3 {
+    margin-top: 2px;
+    margin-bottom: 5px;
   }
 }
