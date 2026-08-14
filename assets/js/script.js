@@ -77,8 +77,11 @@ pageForm?.addEventListener('submit', (e) => {
   });
 
   dropdowns.forEach(drop => {
-    const btn = drop.querySelector('.dropbtn');
+    // Only a real button should control/open the dropdown.
+    // A .dropbtn that is an <a> must remain a normal page link.
+    const btn = drop.querySelector('button.dropbtn');
     if(!btn) return;
+
     btn.setAttribute('type', 'button');
     if(!btn.querySelector('.arrow')){
       btn.innerHTML = btn.textContent.replace('▾','').trim() + ' <span class="arrow">▾</span>';

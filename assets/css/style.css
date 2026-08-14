@@ -4125,7 +4125,12 @@ body {
   height: 2px !important;
   display: block !important;
 }
-
+.dropbtn {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    cursor: pointer;
+}
 .centered-nav .nav-brand-center {
   display: flex !important;
   align-items: center !important;
@@ -8269,7 +8274,7 @@ body {
 .sarvathaa-incubation-image-card img{
    display: block;
   width: 100%;
-  height: 330px;
+  height: 400px;
   aspect-ratio: 8/ 8;
   object-fit: cover;
 }
@@ -8781,4 +8786,11 @@ body {
   display: block;
   object-fit: cover;
   object-position: center;
+}
+
+/* Direct Supply Solutions is a real page link, not a dropdown-control button */
+.nav-links .direct-supply-link {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
 }
