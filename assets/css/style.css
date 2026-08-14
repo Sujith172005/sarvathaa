@@ -2480,7 +2480,7 @@ body {
 }
 
 .home-slider h1 {
-  font-size: clamp(30px, 5vw, 58px) !important;
+  font-size: clamp(30px, 5vw, 48px) !important;
   margin-bottom: 14px !important;
 }
 
@@ -8793,4 +8793,65 @@ body {
   display: inline-flex;
   align-items: center;
   white-space: nowrap;
+}
+
+
+/* Incubation Centre Q&A */
+.incubation-qa-section {
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+.incubation-qa-list {
+  max-width: 1100px;
+  margin: 24px auto 0;
+  display: grid;
+  gap: 16px;
+}
+
+.incubation-qa-item {
+  background: rgba(255, 255, 255, .88);
+  border: 1px solid rgba(196, 45, 99, .12);
+  border-radius: 20px;
+  padding: 20px 24px;
+  box-shadow: var(--shadow);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.incubation-qa-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 42px rgba(146, 32, 74, .15);
+}
+
+.incubation-qa-item h3 {
+  margin: 0 0 8px;
+  color: var(--rose-dark);
+  font-size: 19px;
+  line-height: 1.35;
+}
+
+.incubation-qa-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+@media(max-width:900px) {
+  .incubation-qa-section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .incubation-qa-item {
+    padding: 18px;
+  }
+
+  .incubation-qa-item h3 {
+    font-size: 18px;
+  }
+
+  .incubation-qa-item p {
+    font-size: 15px;
+  }
 }
