@@ -277,7 +277,8 @@ img {
 
 .section-title h2 {
   font-size: 30px;
-  margin: 0
+  margin: 0;
+  margin-bottom: 10px;
 }
 
 .section-title p {
@@ -805,7 +806,7 @@ body {
   }
 }
 .line-center{
-  font-size: 20px;
+  font-size: 18px;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -8274,9 +8275,8 @@ body {
 .sarvathaa-incubation-image-card img{
    display: block;
   width: 100%;
-  height: 400px;
+  height: 345px;
   aspect-ratio: 8/ 8;
-  object-fit: cover;
 }
 .sarvathaa-about-image-card img {
   display: block;
@@ -8540,7 +8540,7 @@ body {
 
 .grid > .service-card:first-child {
   display: grid;
-  grid-template-columns: 62px 1fr;
+  grid-template-columns: 95px 1fr;
   column-gap: 20px;
   align-items: center;
 }
@@ -8832,8 +8832,8 @@ body {
 
 .incubation-qa-item p {
   margin: 0;
-  color: var(--muted);
-  font-size: 16px;
+  color: black;
+  font-size: 17px;
   line-height: 1.7;
 }
 
@@ -8853,5 +8853,77 @@ body {
 
   .incubation-qa-item p {
     font-size: 15px;
+  }
+}
+
+/* Incubation Centre Q&A - single box layout */
+.incubation-qa-section .incubation-qa-box {
+  background: rgba(255, 255, 255, .88);
+  border: 1px solid rgba(196, 45, 99, .14);
+  border-radius: 24px;
+  padding: 2px 30px 30px;
+  box-shadow: var(--shadow);
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+.incubation-qa-section .incubation-qa-list {
+  display: block;
+}
+
+.incubation-qa-section .incubation-qa-item {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(196, 45, 99, .12);
+}
+
+.incubation-qa-section .incubation-qa-item:last-child {
+  border-bottom: none;
+}
+
+
+.incubation-qa-section .incubation-qa-contact {
+  text-align: center;
+  margin-top: 5px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(196, 45, 99, .14);
+}
+
+.incubation-qa-section .incubation-qa-contact p {
+  margin: 0 auto 14px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.incubation-qa-section .incubation-whatsapp-btn {
+  display: inline-flex;
+  gap: 8px;
+  margin: 0 auto;
+}
+.qa{
+  font-size: 1.10rem;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+  .incubation-qa-section .incubation-qa-box {
+    padding: 20px 18px 24px;
+    border-radius: 20px;
+  }
+
+  .incubation-qa-section .incubation-qa-item {
+    padding: 14px 0;
+  }
+
+  .incubation-qa-section .incubation-qa-item h3 {
+    font-size: 17px;
+  }
+
+  .incubation-qa-section .incubation-qa-item p {
+    font-size: 15px;
+  }
+
+  .incubation-qa-section .incubation-whatsapp-btn {
+    width: 100%;
   }
 }
