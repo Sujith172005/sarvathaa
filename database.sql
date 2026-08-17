@@ -66,3 +66,22 @@ INSERT IGNORE INTO coupons
 (code, discount_type, discount_value, start_date, expiry_date, is_active)
 VALUES
 ('SARVATHAA10', 'percent', 10, CURDATE(), DATE_ADD(CURDATE(), INTERVAL 6 MONTH), TRUE);
+
+
+-- Course purchase requests submitted from Silver / Gold / Platinum buy forms
+CREATE TABLE IF NOT EXISTS course_purchase_requests (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(120) NOT NULL,
+  phone VARCHAR(30) NOT NULL,
+  email VARCHAR(180) DEFAULT '',
+  course_key VARCHAR(100) NOT NULL,
+  original_price VARCHAR(40) DEFAULT '',
+  coupon_code VARCHAR(50) DEFAULT '',
+  discount_amount VARCHAR(40) DEFAULT '₹0',
+  final_price VARCHAR(40) DEFAULT '',
+  status VARCHAR(30) NOT NULL DEFAULT 'pending',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX idx_purchase_phone (phone),
+  INDEX idx_purchase_course (course_key),
+  INDEX idx_purchase_status (status)
+);

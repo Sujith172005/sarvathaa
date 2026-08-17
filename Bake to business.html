@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="Sarvathaa Teaching Practice Training Center" name="description"/><title>Teaching Videos</title><link href="assets/css/style.css" rel="stylesheet"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"/><style>
+.tier-courses-section{width:100%;max-width:1280px;margin:32px auto 48px;padding:0 18px;box-sizing:border-box}
+.tier-courses-grid{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:22px!important;align-items:stretch!important;width:100%;}
+.tier-course-card{position:relative;display:flex!important;flex-direction:column;min-width:0;height:100%;box-sizing:border-box;padding:0 24px 24px;background:#fff;border:1px solid rgba(196,45,99,.13);border-radius:18px;box-shadow:0 12px 30px rgba(50,30,20,.08);text-align:left;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease}
+.tier-course-card:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(50,30,20,.13)}
+.tier-course-top{padding:22px 20px 20px;margin:0 -24px 20px;text-align:center;border-bottom:1px solid rgba(0,0,0,.06)}
+.silver-tier .tier-course-top{background:linear-gradient(135deg,#f5f7fa,#e7ebf0)}
+.gold-tier{border:2px solid #e0b62d;box-shadow:0 18px 42px rgba(196,151,20,.18);transform:translateY(-7px)}
+.gold-tier:hover{transform:translateY(-11px)}
+.gold-tier .tier-course-top{background:linear-gradient(135deg,#fff3bf,#f4cf57)}
+.platinum-tier .tier-course-top{background:linear-gradient(135deg,#f5f1fb,#ded5ef)}
+.tier-popular{position:absolute;top:0;left:50%;transform:translateX(-50%);background:#c89b21;color:#fff;padding:6px 18px;border-radius:0 0 12px 12px;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.tier-course-badge{display:inline-flex;align-items:center;justify-content:center;margin-top:10px;padding:6px 13px;border-radius:999px;font-size:12px;font-weight:900;letter-spacing:.06em}
+.silver-tier .tier-course-badge{background:#fff;color:#62666b}.gold-tier .tier-course-badge{background:#fff8db;color:#8b6800}.platinum-tier .tier-course-badge{background:#fff;color:#65537d}
+.tier-course-card h3{margin:13px 0 5px;font-size:25px;line-height:1.2;color:#35141f;text-align:center}
+.tier-course-subtitle{margin:0;color:#765d48;font-size:14px;font-weight:700;line-height:1.45;text-align:center}
+.tier-price{margin:20px 0 18px;text-align:center;font-size:31px;font-weight:900;color:#c42d63}
+.tier-price small{display:block;margin-top:3px;font-size:11px;font-weight:700;color:#8b7669}
+.tier-course-label{margin:0 0 10px;font-size:12px;font-weight:900;color:#35141f;text-transform:uppercase;letter-spacing:.07em}
+.tier-course-card ul{flex:1;margin:0 0 22px;padding:0;list-style:none;text-align:left}
+.tier-course-card li{position:relative;margin:0 0 10px;padding-left:24px;color:#59463c;font-size:14px;line-height:1.45}
+.tier-course-card li:before{content:"✓";position:absolute;left:0;top:0;font-weight:900;font-size:15px}
+.silver-tier li:before{color:#74787d}.gold-tier li:before{color:#c49316}.platinum-tier li:before{color:#735b91}
+.tier-course-btn,.tier-course-help{width:100%;min-height:46px;border-radius:999px;font:inherit;font-weight:900;cursor:pointer;box-sizing:border-box}
+.tier-course-btn{border:0;color:#fff;background:linear-gradient(135deg,#c42d63,#d14d79);margin-bottom:10px;box-shadow:0 8px 18px rgba(196,45,99,.18)}
+.gold-tier .tier-course-btn{background:linear-gradient(135deg,#b88300,#d6a91f);box-shadow:0 8px 18px rgba(194,147,18,.22)}
+.tier-course-help{border:1px solid rgba(196,45,99,.18);background:#fff;color:#8d3151}
+.tier-course-btn:hover,.tier-course-help:hover{filter:brightness(.98);transform:translateY(-1px)}
+@media(max-width:1000px){.tier-courses-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.gold-tier{transform:none}.gold-tier:hover{transform:translateY(-4px)}}
+@media(max-width:680px){.tier-courses-section{padding:0 12px}.tier-courses-grid{grid-template-columns:1fr!important;gap:18px!important}}
+
+/* Course purchase modal */
+.course-modal{
+  position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;
+  padding:20px;background:rgba(28,17,23,.62);backdrop-filter:blur(5px);
+}
+.course-modal.is-open{display:flex}
+.course-modal-box{
+  position:relative;width:min(560px,100%);max-height:92vh;overflow:auto;background:#fff;
+  border-radius:24px;padding:30px;box-shadow:0 24px 80px rgba(0,0,0,.25);
+}
+.course-close{
+  position:absolute;right:16px;top:12px;width:38px;height:38px;border:0;border-radius:50%;
+  background:#f7eaf0;color:#8d3151;font-size:25px;cursor:pointer;
+}
+.course-modal-box h2{margin:0 42px 8px 0;color:#35141f}
+.modal-help{margin:0 0 18px;color:#6b5560;line-height:1.55}
+.course-form{display:grid;gap:13px}
+.course-form label{display:grid;gap:6px;font-weight:800;color:#43202c}
+.course-form input{
+  width:100%;box-sizing:border-box;padding:12px 13px;border:1px solid #e2d5db;border-radius:12px;
+  font:inherit;background:#fff;
+}
+.course-form input:focus{outline:2px solid rgba(196,45,99,.16);border-color:#c42d63}
+.required-star{color:#c42d63}.optional-text{font-size:11px;color:#8a7a82;font-weight:600}
+.coupon-inline{display:flex;gap:8px}.coupon-inline input{flex:1}
+.coupon-inline button{white-space:nowrap}
+.coupon-message{margin:4px 0 0;color:#7a6570;font-size:13px}
+.coupon-summary{
+  display:grid;grid-template-columns:1fr auto;gap:8px 14px;padding:13px 15px;
+  border-radius:14px;background:#fff7fa;border:1px solid rgba(196,45,99,.12)
+}
+.payment-whatsapp-btn{width:100%;margin-top:4px}
+.purchase-status{
+  display:none;padding:12px 14px;border-radius:12px;font-weight:700;font-size:14px;
+}
+.purchase-status.show{display:block}
+.purchase-status.success{background:#eaf9f0;color:#167342}
+.purchase-status.error{background:#fff0f2;color:#a32145}
+body.modal-open{overflow:hidden}
+
+</style></head><body><div class="preloader"><div class="loader"></div></div>
+<div class="topbar">
+<div class="topbar-inner">
+<div class="topbar-location">📍 Indiranagar, Bangalore</div>
+ <div class="topbar-right">
+                <span>⏰ Mon–Sat: 10:00 AM – 6:00 PM</span>
+                <a href="tel:+91-9886916067">📞 +91-9886916067</a>
+            </div>
+</div>
+</div>
+ <header class="header">
+        <nav class="nav centered-nav">
+             <a class="brand mobile-brand" href="index.html"><img alt="Sarvathaa Logo"
+                    src="assets/images/sarvathaa-logo.png" /></a>
+            <button aria-label="Open menu" class="hamburger" type="button">☰</button>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#about-page-title">About us</a>
+               <div class="dropdown">
+                        <a class="dropbtn direct-supply-link" href="Bake to business.html">Bake to Business Program▾</a>
+                        <div class="dropdown-menu">
+                            <a href="Bake to business.html#piping">Piping</a>
+                            <a href="Bake to business.html#chocolate-garnish">Chocolate Garnish</a>
+                            <a href="Bake to business.html#baking">Baking - Cakes &amp; Cookies</a>
+                            <a href="Bake to business.html#icing">Icing Cake</a>
+                            <a href="Bake to business.html#creams">Creams</a>
+                            <a href="Bake to business.html#mousselines">Mousselines</a>
+                            <a href="Bake to business.html#ganache">Ganache</a>
+                        </div>
+                    </div>
+                <a href="practice-area.html">Baking skill center</a>
+                           <a class="brand nav-brand-center"><img alt="Sarvathaa Logo"
+                        src="assets/images/sarvathaa-logo.png" /></a>
+
+                 <div class="dropdown">
+                    <a class="dropbtn direct-supply-link" href="direct-supply-solutions.html">Direct Supply Solutions</a>
+                    <div class="dropdown-menu">
+                        <a href="ingredients.html">Ingredients</a>
+                        <a href="equipment.html">Equipment</a>
+                        <a href="tools.html">Tools</a>
+                        <a href="bakeware-moulds.html">Bakeware / Moulds</a>
+                        <a href="measuring-tools.html">Measuring Tools</a>
+                        <a href="pre-essentials.html">Pre Essentials</a>
+                        <a href="utensils.html">Utensils</a>
+                    </div>
+                </div>
+                <a href="incubation-center.html">Incubation Center</a>
+                <a class="course-login-nav" href="course-login.html">Login</a>
+                <a class="nav-whatsapp" href="https://wa.me/919886916067" target="_blank" rel="noopener" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                </a>
+                <a class="nav-instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram">
+                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                </a>
+
+            </div>
+        </nav>
+    </header>
+    <section class="section sarvathaa-about-section" aria-labelledby="about-page-title">
+  <div class="container sarvathaa-about-container">
+    <div class="sarvathaa-about-heading">
+        <h2 id="about-page-title">Incubation Centre</h2>
+    </div>
+
+    <div class="sarvathaa-about-intro">
+        <p><b>Baking Product Incubation Center</b></p>
+
+      <p>Our Baking Product Incubation Center is a fully equipped commercial kitchen facility designed to help aspiring bakers, home bakers, and food entrepreneurs transform their baking ideas into market-ready products and businesses.
+</p>
+    </div>
+
+    <div class="sarvathaa-about-main">
+      <div class="sarvathaa-incubation-image-card">
+        <img src="assets/savaratha/inside pics/incubation center - inside.png" alt="Sarvathaa team working together in a professional environment">
+      </div>
+
+      <div class="sarvathaa-incubation-content">
+       
+        <p>The centre provides access to professional baking equipment, production facilities, workspaces, and essential kitchen infrastructure without the need to invest in and set up a complete commercial kitchen from the beginning.</p>
+      
+        <p>Entrepreneurs can use the facility for recipe development, product trials, testing, small-batch production, product refinement, costing, and commercial preparation. Along with the infrastructure, we provide practical support in ingredient sourcing, packaging, product development, production planning, and business guidance.</p>
+       
+        <p>From experimenting with a recipe to developing a sellable product and starting commercial production, our incubation centre provides the facilities and support to turn baking ideas into viable businesses.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section course-flow-section"><div class="container">
+<div class="section-title"><span>Premium Video Learning</span><h2>Simple Course Login Access After Payment</h2><p>Preview is free. After payment verification, we create your login and unlock only your paid course videos.</p></div>
+<div class="course-steps">
+<div><strong>1</strong><span>Watch preview</span></div>
+<div><strong>2</strong><span>Fill buy form</span></div>
+<div><strong>3</strong><span>Pay using QR/UPI</span></div>
+<div><strong>4</strong><span>Send screenshot</span></div>
+<div><strong>5</strong><span>Get login username &amp; password</span></div>
+</div>
+<div class="course-login-cta">
+<div>
+<h3>Already Paid? Login for Course Access</h3>
+<p>After payment verification, use the username and password sent by Sarvathaa to watch your unlocked course videos.</p>
+</div>
+<a class="btn primary" href="course-login.html">Login for Course Access</a>
+</div>
+<!-- SILVER GOLD PLATINUM COURSES START -->
+<section class="tier-courses-section" aria-label="Sarvathaa course plans">
+  <div class="tier-courses-grid">
+    <article class="tier-course-card silver-tier">
+      <div class="tier-course-top">
+        <div class="tier-course-badge">🥈 SILVER</div>
+        <h3>Silver Course</h3>
+        <p class="tier-course-subtitle">Basic Baking &amp; Decoration</p>
+      </div>
+      <div class="tier-price">₹2,999<small>One-time course fee</small></div>
+      <p class="tier-course-label">What's included</p>
+      <ul>
+        <li>Basic cake baking</li>
+        <li>Cookies and basic recipes</li>
+        <li>Basic creams and icing</li>
+        <li>Basic piping and decoration</li>
+        <li>Oven handling and measurements</li>
+        <li>Certificate on completion</li>
+      </ul>
+      <button type="button" class="tier-course-btn buy-tier-course" data-course="Silver Course" data-price="₹2,999">Buy Silver Course</button>
+      <button type="button" class="tier-course-help">Need Help?</button>
+    </article>
+
+    <article class="tier-course-card gold-tier">
+      <div class="tier-popular">Most Popular</div>
+      <div class="tier-course-top">
+        <div class="tier-course-badge">🥇 GOLD</div>
+        <h3>Gold Course</h3>
+        <p class="tier-course-subtitle">Advanced Baking &amp; Decoration</p>
+      </div>
+      <div class="tier-price">₹5,999<small>One-time course fee</small></div>
+      <p class="tier-course-label">Everything in Silver, plus</p>
+      <ul>
+        <li>Advanced cakes and cookies</li>
+        <li>Professional piping techniques</li>
+        <li>Ganache and chocolate decoration</li>
+        <li>Advanced cream techniques</li>
+        <li>Professional cake finishing</li>
+        <li>Certificate on completion</li>
+      </ul>
+      <button type="button" class="tier-course-btn buy-tier-course" data-course="Gold Course" data-price="₹5,999">Buy Gold Course</button>
+      <button type="button" class="tier-course-help">Need Help?</button>
+    </article>
+
+    <article class="tier-course-card platinum-tier">
+      <div class="tier-course-top">
+        <div class="tier-course-badge">💎 PLATINUM</div>
+        <h3>Platinum Course</h3>
+        <p class="tier-course-subtitle">Professional Baking &amp; Business</p>
+      </div>
+      <div class="tier-price">₹9,999<small>One-time course fee</small></div>
+      <p class="tier-course-label">Everything in Gold, plus</p>
+      <ul>
+        <li>Professional baking &amp; chocolate work</li>
+        <li>Product costing and pricing</li>
+        <li>Packaging and product presentation</li>
+        <li>Production planning</li>
+        <li>Business setup guidance</li>
+        <li>Certificate on completion</li>
+      </ul>
+      <button type="button" class="tier-course-btn buy-tier-course" data-course="Platinum Course" data-price="₹9,999">Buy Platinum Course</button>
+      <button type="button" class="tier-course-help">Need Help?</button>
+    </article>
+  </div>
+</section>
+<!-- SILVER GOLD PLATINUM COURSES END -->
+
+<div class="grid premium-course-grid"><div class="card premium-course-card" id="piping">
+<div class="preview-wrap">
+<video controls="" controlslist="nodownload" poster="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&amp;fit=crop&amp;w=900&amp;q=80" preload="metadata">
+<source src="assets/videos/preview-demo.mp4" type="video/mp4"/>
+</video>
+<span class="preview-badge">1 Minute Free Preview</span>
+<span class="locked-badge">🔒 Full videos after payment</span>
+</div>
+<div class="course-body">
+<h3>🎥 Piping Masterclass</h3>
+<p>Learn piping basics, borders, rosettes, stars and finishing techniques.</p>
+<div class="course-meta"><span>6 Hours</span><span>Beginner</span><span>Lifetime Access</span></div>
+<div class="course-price">₹499</div>
+<button class="btn buy-course-btn" data-course="Piping" data-price="₹499">Buy Full Course</button>
+<a class="btn secondary" data-wa="Hi Sarvathaa Team, I want to buy full video access. Course: Piping. I need help to buy this course." href="#">Need Help?</a>
+</div>
+</div>
+<div class="card premium-course-card" id="chocolate-garnish">
+<div class="preview-wrap">
+<video controls="" controlslist="nodownload" poster="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&amp;fit=crop&amp;w=900&amp;q=80" preload="metadata">
+<source src="assets/videos/preview-demo.mp4" type="video/mp4"/>
+</video>
+<span class="preview-badge">1 Minute Free Preview</span>
+<span class="locked-badge">🔒 Full videos after payment</span>
+</div>
+<div class="course-body">
+<h3>🎥 Chocolate Garnish</h3>
+<p>Chocolate curls, shards, drizzle, garnish styling and dessert finishing.</p>
+<div class="course-meta"><span>5 Hours</span><span>Beginner</span><span>Lifetime Access</span></div>
+<div class="course-price">₹599</div>
+<button class="btn buy-course-btn" data-course="Chocolate Garnish" data-price="₹599">Buy Full Course</button>
+<a class="btn secondary" data-wa="Hi Sarvathaa Team, I want to buy full video access. Course: Chocolate Garnish. I need help to buy this course." href="#">Need Help?</a>
+</div>
+</div>
+<div class="card premium-course-card" id="baking">
+<div class="preview-wrap">
+<video controls="" controlslist="nodownload" poster="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?auto=format&amp;fit=crop&amp;w=900&amp;q=80" preload="metadata">
+<source src="assets/videos/preview-demo.mp4" type="video/mp4"/>
+</video>
+<span class="preview-badge">1 Minute Free Preview</span>
+<span class="locked-badge">🔒 Full videos after payment</span>
+</div>
+<div class="course-body">
+<h3>🎥 Baking - Cakes &amp; Cookies</h3>
+<p>Understand cake and cookie baking, oven settings, texture and troubleshooting.</p>
+<div class="course-meta"><span>8 Hours</span><span>Beginner</span><span>Lifetime Access</span></div>
+<div class="course-price">₹999</div>
+<button class="btn buy-course-btn" data-course="Baking - Cakes &amp; Cookies" data-price="₹999">Buy Full Course</button>
+<a class="btn secondary" data-wa="Hi Sarvathaa Team, I want to buy full video access. Course: Baking - Cakes &amp; Cookies. I need help to buy this course." href="#">Need Help?</a>
+</div>
+</div>
+<div class="card premium-course-card" id="icing">
+<div class="preview-wrap">
+<video controls="" controlslist="nodownload" poster="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&amp;fit=crop&amp;w=900&amp;q=80" preload="metadata">
+<source src="assets/videos/preview-demo.mp4" type="video/mp4"/>
+</video>
+<span class="preview-badge">1 Minute Free Preview</span>
+<span class="locked-badge">🔒 Full videos after payment</span>
+</div>
+<div class="course-body">
+<h3>🎥 Icing Cake</h3>
+<p>Cake layering, crumb coating, smoothing, sharp edges and simple decoration.</p>
+<div class="course-meta"><span>6 Hours</span><span>Beginner</span><span>Lifetime Access</span></div>
+<div class="course-price">₹699</div>
+<button class="btn buy-course-btn" data-course="Icing Cake" data-price="₹699">Buy Full Course</button>
+<a class="btn secondary" data-wa="Hi Sarvathaa Team, I want to buy full video access. Course: Icing Cake. I need help to buy this course." href="#">Need Help?</a>
+</div>
+</div>
+<div class="card premium-course-card" id="creams">
+<div class="preview-wrap">
+<video controls="" controlslist="nodownload" poster="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&amp;fit=crop&amp;w=900&amp;q=80" preload="metadata">
+<source src="assets/videos/preview-demo.mp4" type="video/mp4"/>
+</video>
+<span class="preview-badge">1 Minute Free Preview</span>
+<span class="locked-badge">🔒 Full videos after payment</span>
+</div>
+<div class="course-body">
+<h3>🎥 Creams</h3>
+<p>Whipped cream, buttercream basics, consistency and storage guidance.</p>
+<div class="course-meta"><span>4 Hours</span><span>Beginner</span><span>Lifetime Access</span></div>
+<div class="course-price">₹499</div>
+<button class="btn buy-course-btn" data-course="Creams" data-price="₹499">Buy Full Course</button>
+<a class="btn secondary" data-wa="Hi Sarvathaa Team, I want to buy full video access. Course: Creams. I need help to buy this course." href="#">Need Help?</a>
+</div>
+</div>
+<div class="card premium-course-card" id="mousselines">
+<div class="preview-wrap">
+<video controls="" controlslist="nodownload" poster="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&amp;fit=crop&amp;w=900&amp;q=80" preload="metadata">
+<source src="assets/videos/preview-demo.mp4" type="video/mp4"/>
+</video>
+<span class="preview-badge">1 Minute Free Preview</span>
+<span class="locked-badge">🔒 Full videos after payment</span>
+</div>
+<div class="course-body">
+<h3>🎥 Mousselines</h3>
+<p>Mousseline preparation, mixing method, texture control and usage.</p>
+<div class="course-meta"><span>4 Hours</span><span>Intermediate</span><span>Lifetime Access</span></div>
+<div class="course-price">₹599</div>
+<button class="btn buy-course-btn" data-course="Mousselines" data-price="₹599">Buy Full Course</button>
+<a class="btn secondary" data-wa="Hi Sarvathaa Team, I want to buy full video access. Course: Mousselines. I need help to buy this course." href="#">Need Help?</a>
+</div>
+</div>
+<div class="card premium-course-card" id="ganache">
+<div class="preview-wrap">
+<video controls="" controlslist="nodownload" poster="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?auto=format&amp;fit=crop&amp;w=900&amp;q=80" preload="metadata">
+<source src="assets/videos/preview-demo.mp4" type="video/mp4"/>
+</video>
+<span class="preview-badge">1 Minute Free Preview</span>
+<span class="locked-badge">🔒 Full videos after payment</span>
+</div>
+<div class="course-body">
+<h3>🎥 Ganache</h3>
+<p>Ganache ratios, pouring, whipping, filling and cake coverage techniques.</p>
+<div class="course-meta"><span>5 Hours</span><span>Beginner</span><span>Lifetime Access</span></div>
+<div class="course-price">₹599</div>
+<button class="btn buy-course-btn" data-course="Ganache" data-price="₹599">Buy Full Course</button>
+<a class="btn secondary" data-wa="Hi Sarvathaa Team, I want to buy full video access. Course: Ganache. I need help to buy this course." href="#">Need Help?</a>
+</div>
+</div></div>
+<div class="wa-enquiry drive-note"><h2>How full video access works</h2><p>After payment, please send your payment screenshot on WhatsApp. Our team will verify your payment and send your Course Login link, username, and password.</p><a class="btn" data-wa="Hi Sarvathaa Team, I want to know about course login video access." href="#">Contact on WhatsApp</a></div>
+</div></section>
+<div aria-hidden="true" class="course-modal" id="courseModal">
+<div class="course-modal-box">
+<button aria-label="Close" class="course-close">×</button>
+<h2>Buy Full Course Video</h2>
+<p class="modal-help">Enter your details, apply a coupon if available, and send your course request on WhatsApp. Our team will guide you with the payment and course login process.</p>
+<form class="course-form" id="courseBuyForm">
+<label>Name <span class="required-star">*</span><input id="buyerName" autocomplete="name" placeholder="Enter your name" required="" type="text"/></label>
+<label>WhatsApp Number <span class="required-star">*</span><input id="buyerPhone" autocomplete="tel" inputmode="numeric" maxlength="10" pattern="[0-9]{10}" placeholder="Enter 10 digit WhatsApp number" required="" type="tel"/></label>
+<label>Email ID <span class="optional-text">optional</span><input id="buyerEmail" autocomplete="email" placeholder="Enter email for login details" type="email"/></label>
+<label>Course Name<input id="buyerCourse" readonly="" type="text"/></label>
+<label>Original Price<input id="buyerPrice" readonly="" type="text"/></label>
+<div class="coupon-box">
+  <label>Coupon Code <span class="optional-text">optional</span>
+    <div class="coupon-inline">
+      <input id="buyerCoupon" autocomplete="off" placeholder="Enter coupon code" type="text"/>
+      <button class="btn secondary coupon-apply-btn" id="applyCouponBtn" type="button">Apply</button>
+    </div>
+  </label>
+  <p class="coupon-message" id="couponMessage">Have a coupon? Enter your code and click Apply.</p>
+  <div class="coupon-summary" id="couponSummary" hidden>
+    <span>Discount</span><strong id="couponDiscountText">₹0</strong>
+    <span>Final Payable</span><strong id="couponFinalText">₹0</strong>
+  </div>
+</div>
+<div class="purchase-status" id="purchaseStatus" role="status"></div>
+<button class="btn payment-whatsapp-btn" type="submit">Send Course Request on WhatsApp</button>
+</form>
+</div>
+</div><a class="whatsapp" data-wa="Hi Sarvathaa Team, I need more information." href="#">WhatsApp</a><button class="to-top">↑</button>
+<footer class="footer">
+<div class="footer-grid footer-grid-contact">
+<div class="footer-brand">
+<img alt="Sarvathaa" src="assets/images/sarvathaa-logo.png"/>
+<p>Offline practice area, teaching videos, incubation center, bakery essentials and packaging support.</p>
+</div>
+<div>
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="index.html#about">About Us</a>
+                <a href="incubation-center.html">Incubation Center</a>
+                <a class="course-login-nav" href="course-login.html">Login</a>
+            </div>
+            <div>
+                <h3>What We Provide </h3>
+                 <a href="Bake to business.html">Bake to Business Program</a>
+                <a href="practice-area.html">Baking skill center</a>
+                <a href="direct-supply-solutions.html">Direct Supply Solutions</a>
+            </div>
+ <div class="footer-contact">
+                <h3>Contact</h3>
+                <p>Ullaaya Brothers Foods Pvt Ltd</p>
+                <p>No.345, 1st cross, 4th Main , Indiranagar, Bangalore–560075</p>
+                <p>📞 080-42046781, +91-9886916067</p>
+                <a>📧contact@ullaaya.com</a>
+            </div>
+</div>
+<div class="copyright">© 2026 Sarvathaa. All rights reserved.</div>
+</footer>
+<script>
+(function(){
+  const modal = document.getElementById('courseModal');
+  const form = document.getElementById('courseBuyForm');
+  if(!modal || !form) return;
+
+  const courseInput = document.getElementById('buyerCourse');
+  const priceInput = document.getElementById('buyerPrice');
+  const statusBox = document.getElementById('purchaseStatus');
+  const closeBtn = modal.querySelector('.course-close');
+  const couponBtn = document.getElementById('applyCouponBtn');
+  const couponInput = document.getElementById('buyerCoupon');
+  const couponMessage = document.getElementById('couponMessage');
+  const couponSummary = document.getElementById('couponSummary');
+  const couponDiscountText = document.getElementById('couponDiscountText');
+  const couponFinalText = document.getElementById('couponFinalText');
+
+  let currentCourse = '';
+  let currentPrice = '';
+  let finalPrice = '';
+  let discountAmount = '₹0';
+
+  function setStatus(message, type){
+    statusBox.textContent = message || '';
+    statusBox.className = 'purchase-status' + (message ? ' show ' + type : '');
+  }
+
+  function openModal(course, price){
+    currentCourse = course || '';
+    currentPrice = price || '';
+    finalPrice = currentPrice;
+    discountAmount = '₹0';
+
+    courseInput.value = currentCourse;
+    priceInput.value = currentPrice;
+    couponInput.value = '';
+    couponSummary.hidden = true;
+    couponMessage.textContent = 'Have a coupon? Enter your code and click Apply.';
+    setStatus('', '');
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('modal-open');
+    setTimeout(function(){ document.getElementById('buyerName').focus(); }, 50);
+  }
+
+  function closeModal(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('modal-open');
+    setStatus('', '');
+  }
+
+  document.querySelectorAll('.buy-tier-course').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      openModal(btn.dataset.course, btn.dataset.price);
+    });
+  });
+
+  // Keep the existing lower video-course purchase buttons working too.
+  document.querySelectorAll('.buy-course-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      openModal(btn.dataset.course || 'Course', btn.dataset.price || '');
+    });
+  });
+
+  document.querySelectorAll('.tier-course-help').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      const card = btn.closest('.tier-course-card');
+      const course = card ? (card.querySelector('h3')?.textContent || 'Course') : 'Course';
+      const text = 'Hi Sarvathaa Team, I need help with the ' + course + '.';
+      window.open('https://wa.me/919886916067?text=' + encodeURIComponent(text), '_blank');
+    });
+  });
+
+  if(closeBtn) closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('is-open')) closeModal(); });
+
+  if(couponBtn){
+    couponBtn.addEventListener('click', async function(){
+      const code = (couponInput.value || '').trim().toUpperCase();
+      if(!code){ couponMessage.textContent = 'Enter a coupon code first.'; return; }
+      try{
+        const res = await fetch('/api/coupons/validate', {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({code:code, price:currentPrice})
+        });
+        const data = await res.json();
+        if(!res.ok || !data.ok){ couponSummary.hidden = true; couponMessage.textContent = data.message || 'Coupon is not valid.'; return; }
+        finalPrice = data.final_price_text;
+        discountAmount = data.discount_amount_text;
+        couponDiscountText.textContent = discountAmount;
+        couponFinalText.textContent = finalPrice;
+        couponSummary.hidden = false;
+        couponMessage.textContent = 'Coupon applied successfully.';
+      }catch(err){
+        couponMessage.textContent = 'Could not validate coupon. Please try again.';
+      }
+    });
+  }
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    const name = document.getElementById('buyerName').value.trim();
+    const phone = document.getElementById('buyerPhone').value.trim();
+    const email = document.getElementById('buyerEmail').value.trim();
+    const coupon = couponInput.value.trim().toUpperCase();
+
+    if(!name || !/^\d{10}$/.test(phone)){
+      setStatus('Please enter your name and a valid 10-digit WhatsApp number.', 'error');
+      return;
+    }
+
+    const submitBtn = form.querySelector('.payment-whatsapp-btn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Saving your request...';
+    setStatus('', '');
+
+    try{
+      const res = await fetch('/api/course-purchase-request', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          name:name, phone:phone, email:email,
+          course:currentCourse, original_price:currentPrice,
+          coupon_code:coupon, discount_amount:discountAmount,
+          final_price:finalPrice
+        })
+      });
+      const data = await res.json();
+
+      if(!res.ok || !data.ok){
+        throw new Error(data.message || 'Could not save your request.');
+      }
+
+      setStatus('Request saved successfully. Opening WhatsApp...', 'success');
+
+      const message =
+        'Hi Sarvathaa Team, I want to buy a course.%0A' +
+        'Name: ' + encodeURIComponent(name) + '%0A' +
+        'WhatsApp: ' + encodeURIComponent(phone) + '%0A' +
+        'Email: ' + encodeURIComponent(email || 'Not provided') + '%0A' +
+        'Course: ' + encodeURIComponent(currentCourse) + '%0A' +
+        'Original Price: ' + encodeURIComponent(currentPrice) + '%0A' +
+        'Coupon: ' + encodeURIComponent(coupon || 'None') + '%0A' +
+        'Final Payable: ' + encodeURIComponent(finalPrice);
+
+      setTimeout(function(){
+        window.open('https://wa.me/919886916067?text=' + message, '_blank');
+      }, 350);
+    }catch(err){
+      setStatus(err.message || 'Could not save your request. Please try again.', 'error');
+    }finally{
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send Course Request on WhatsApp';
+    }
+  });
+})();
+</script>
+
+<script src="assets/js/script.js"></script></body></html>

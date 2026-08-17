@@ -423,6 +423,25 @@ def init_db():
         (code, discount_type, discount_value, start_date, expiry_date, is_active)
         VALUES (%s, 'percent', 10, CURDATE(), %s, TRUE)
     """, ('SARVATHAA10', six_month_expiry))
+
+    cur.execute("""
+        CREATE TABLE IF NOT EXISTS course_purchase_requests (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            name VARCHAR(120) NOT NULL,
+            phone VARCHAR(30) NOT NULL,
+            email VARCHAR(180) DEFAULT '',
+            course_key VARCHAR(100) NOT NULL,
+            original_price VARCHAR(40) DEFAULT '',
+            coupon_code VARCHAR(50) DEFAULT '',
+            discount_amount VARCHAR(40) DEFAULT '₹0',
+            final_price VARCHAR(40) DEFAULT '',
+            status VARCHAR(30) NOT NULL DEFAULT 'pending',
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            INDEX idx_purchase_phone (phone),
+            INDEX idx_purchase_course (course_key),
+            INDEX idx_purchase_status (status)
+        )
+    """)
     con.commit()
     cur.close()
     con.close()
@@ -656,6 +675,84 @@ def internal_error(error):
     if request.path.startswith('/api/'):
         return jsonify({"ok": False, "message": "Server error. Check Flask terminal red error and confirm MySQL database/tables are updated."}), 500
     return "Server error. Check Flask terminal red error and restart the Flask app.", 500
+
+
+@app.route('/api/course-purchase-request', methods=['POST'])
+def course_purchase_request():
+    data = request.get_json(force=True) or {}
+    name = (data.get('name') or '').strip()
+    phone = (data.get('phone') or '').strip()
+    email = (data.get('email') or '').strip()
+    course = (data.get('course') or '').strip()
+    original_price = (data.get('original_price') or '').strip()
+    coupon_code = (data.get('coupon_code') or '').strip().upper()
+    discount_amount = (data.get('discount_amount') or '₹0').strip()
+    final_price = (data.get('final_price') or original_price).strip()
+
+    if not name:
+        return jsonify({"ok": False, "message": "Name is required."}), 400
+    if not re.fullmatch(r'\d{10}', phone):
+        return jsonify({"ok": False, "message": "Please enter a valid 10-digit WhatsApp number."}), 400
+    if not course:
+        return jsonify({"ok": False, "message": "Please select a course."}), 400
+
+    allowed_courses = {
+        "Silver Course": "silver",
+        "Gold Course": "gold",
+        "Platinum Course": "platinum",
+    }
+    if course not in allowed_courses:
+        return jsonify({"ok": False, "message": "Invalid course selected."}), 400
+
+    # Recalculate coupon server-side so the browser cannot alter the payable amount.
+    try:
+        con = get_db()
+        cur = con.cursor(dictionary=True)
+        cur.execute("""
+            SELECT * FROM coupons
+            WHERE code=%s AND is_active=1
+              AND start_date <= CURDATE()
+              AND expiry_date >= CURDATE()
+            LIMIT 1
+        """, (coupon_code,)) if coupon_code else None
+        coupon = cur.fetchone() if coupon_code else None
+
+        if coupon_code and not coupon:
+            cur.close(); con.close()
+            return jsonify({"ok": False, "message": "Coupon is invalid or expired."}), 400
+
+        if coupon:
+            calc = calculate_coupon_discount(original_price, coupon)
+            discount_amount = calc["discount_amount_text"]
+            final_price = calc["final_price_text"]
+
+        cur.close()
+        con.close()
+    except Error as e:
+        return jsonify({"ok": False, "message": f"Database validation failed: {e}"}), 500
+
+    try:
+        con = get_db()
+        cur = con.cursor()
+        cur.execute("""
+            INSERT INTO course_purchase_requests
+            (name, phone, email, course_key, original_price, coupon_code, discount_amount, final_price, status)
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,'pending')
+        """, (
+            name, phone, email, allowed_courses[course],
+            original_price, coupon_code, discount_amount, final_price
+        ))
+        request_id = cur.lastrowid
+        con.commit()
+        cur.close()
+        con.close()
+        return jsonify({
+            "ok": True,
+            "request_id": request_id,
+            "message": "Course purchase request saved successfully."
+        })
+    except Error as e:
+        return jsonify({"ok": False, "message": f"Could not save request: {e}"}), 500
 
 @app.route('/api/student-login', methods=['POST'])
 def student_login():
