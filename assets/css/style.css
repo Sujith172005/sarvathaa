@@ -9017,3 +9017,422 @@ body {
     margin-bottom: 5px;
   }
 }
+
+
+/* =========================================================
+   FINAL MOBILE-ONLY FIX
+   Home banner image + Incubation Facilities grid/images
+   Desktop/tablet styles are not changed by these rules.
+   ========================================================= */
+@media (max-width: 600px) {
+
+  /* HOME BANNER */
+  .home-slider {
+    min-height: 680px !important;
+    height: 680px !important;
+    max-height: none !important;
+    overflow: hidden !important;
+    position: relative !important;
+  }
+
+  .home-slider .slider-track {
+    position: absolute !important;
+    inset: 0 !important;
+  }
+
+  .home-slider .hero-slide {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    gap: 20px !important;
+    padding: 28px 20px 58px 20px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+
+  .home-slider .slide-content {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .home-slider .slide-media {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    aspect-ratio: 16 / 10 !important;
+    max-width: 420px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  .home-slider .slide-media img,
+  .home-slider .slide-media > img {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+
+  /* Keep slider controls outside the image/content area */
+  .home-slider .slider-arrow {
+    z-index: 20 !important;
+    top: auto !important;
+    bottom: 112px !important;
+    width: 46px !important;
+    height: 46px !important;
+    font-size: 38px !important;
+    line-height: 44px !important;
+  }
+
+  .home-slider .slider-prev {
+    left: 12px !important;
+  }
+
+  .home-slider .slider-next {
+    right: 12px !important;
+  }
+
+  .home-slider .slider-dots {
+    bottom: 24px !important;
+  }
+
+  /* FACILITIES MOBILE GRID */
+  .facilities-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    width: 100% !important;
+    margin: 0 !important;
+    align-items: stretch !important;
+  }
+
+  .facilities-grid > .service-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    padding: 0 0 14px !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .facilities-grid > .service-card .facility-image {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 3 / 2 !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 0 10px !important;
+    padding: 0 !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+    border-radius: 12px 12px 0 0 !important;
+    box-sizing: border-box !important;
+    flex: 0 0 auto !important;
+  }
+
+  .facilities-grid > .service-card h3 {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 2px 8px 6px !important;
+    font-size: 16px !important;
+    line-height: 1.25 !important;
+    text-align: center !important;
+  }
+
+  .facilities-grid > .service-card p {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 8px !important;
+    padding: 0 !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+    text-align: center !important;
+  }
+}
+
+
+/* MOBILE HOME BANNER - keep slider dots close to the banner image */
+@media (max-width: 900px) {
+  .home-slider .slider-dots {
+    bottom: 155px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-slider .slider-dots {
+    bottom: 175px !important;
+    gap: 9px !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE HOME BANNER ORDER - IMAGE FIRST, THEN CONTENT
+   Mobile only. Desktop/tablet remain unchanged.
+   ========================================================= */
+@media (max-width: 600px) {
+  .home-slider .hero-slide {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    gap: 18px !important;
+    padding: 20px 20px 58px !important;
+    overflow-y: auto !important;
+  }
+
+  /* Image comes first */
+  .home-slider .slide-media {
+    order: 1 !important;
+    width: 100% !important;
+    max-width: 420px !important;
+    margin: 0 auto !important;
+    aspect-ratio: 16 / 10 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* Text comes after the image */
+  .home-slider .slide-content {
+    order: 2 !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    flex: 0 0 auto !important;
+  }
+
+  /* Keep arrows directly around the image */
+  .home-slider .slider-arrow {
+    top: 282px !important;
+    bottom: auto !important;
+    z-index: 30 !important;
+  }
+
+  .home-slider .slider-prev {
+    left: 12px !important;
+  }
+
+  .home-slider .slider-next {
+    right: 12px !important;
+  }
+
+  /* Dots directly below the image */
+  .home-slider .slider-dots {
+    top: 304px !important;
+    bottom: auto !important;
+    z-index: 30 !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-slider .hero-slide {
+    padding: 18px 18px 58px !important;
+    gap: 16px !important;
+  }
+
+  .home-slider .slider-arrow {
+    top: 250px !important;
+    width: 42px !important;
+    height: 42px !important;
+    font-size: 34px !important;
+  }
+
+  .home-slider .slider-dots {
+    top: 272px !important;
+    gap: 9px !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL MOBILE HOME BANNER LAYOUT FIX
+   Mobile only: image -> dots/arrows -> content.
+   Removes the large empty area and prevents controls from
+   overlapping the header/content.
+   ========================================================= */
+@media (max-width: 600px) {
+
+  /* Let the banner height follow its actual mobile content. */
+  .home-slider {
+    min-height: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: relative !important;
+    padding: 0 !important;
+  }
+
+  .home-slider .slider-track {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Only the active slide participates in the mobile layout. */
+  .home-slider .hero-slide {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    box-sizing: border-box !important;
+    display: none !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    padding: 18px 18px 28px !important;
+    overflow: visible !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+
+  .home-slider .hero-slide.active {
+    display: flex !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    z-index: 2 !important;
+  }
+
+  /* IMAGE FIRST */
+  .home-slider .slide-media {
+    order: 1 !important;
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    max-width: 420px !important;
+    height: auto !important;
+    aspect-ratio: 16 / 10 !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 auto !important;
+    flex: none !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    background: #fff !important;
+    box-sizing: border-box !important;
+  }
+
+  .home-slider .slide-media img {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+
+  /* CONTENT AFTER IMAGE */
+  .home-slider .slide-content {
+    order: 2 !important;
+    position: relative !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 32px 0 0 !important;
+    padding: 0 !important;
+    flex: none !important;
+    box-sizing: border-box !important;
+  }
+
+  .home-slider .slide-content h1 {
+    margin: 0 0 14px !important;
+  }
+
+  .home-slider .slide-content p {
+    margin: 0 0 24px !important;
+  }
+
+  .home-slider .slide-content .btn {
+    margin-bottom: 0 !important;
+  }
+
+  /* Arrows are vertically centered on the IMAGE only. */
+  .home-slider .slider-arrow {
+    top: min(149.25px, calc(31.25vw + 6.75px)) !important;
+    bottom: auto !important;
+    transform: translateY(-50%) !important;
+    z-index: 30 !important;
+    width: 42px !important;
+    height: 42px !important;
+    font-size: 34px !important;
+    line-height: 40px !important;
+  }
+
+  .home-slider .slider-prev {
+    left: 8px !important;
+  }
+
+  .home-slider .slider-next {
+    right: 8px !important;
+  }
+
+  /* Dots sit immediately below the IMAGE, before the content. */
+  .home-slider .slider-dots {
+    position: absolute !important;
+    left: 50% !important;
+    top: min(290.5px, calc(62.5vw + 5.5px)) !important;
+    bottom: auto !important;
+    transform: translateX(-50%) !important;
+    z-index: 30 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 9px !important;
+  }
+
+  .home-slider .slider-dot {
+    width: 12px !important;
+    height: 12px !important;
+    flex: 0 0 auto !important;
+  }
+
+  .home-slider .slider-dot.active {
+    width: 34px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-slider .hero-slide {
+    padding: 16px 18px 26px !important;
+  }
+
+  .home-slider .slide-content {
+    margin-top: 30px !important;
+  }
+
+  .home-slider .slider-arrow {
+    top: min(147.25px, calc(31.25vw + 5.75px)) !important;
+    width: 40px !important;
+    height: 40px !important;
+    font-size: 32px !important;
+  }
+
+  .home-slider .slider-dots {
+    top: min(289.5px, calc(62.5vw + 2.5px)) !important;
+  }
+}
