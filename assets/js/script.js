@@ -326,3 +326,4 @@ Original Course Price: ${price}${couponLine}`;
   slider.addEventListener('mouseleave', restart);
   restart();
 })();
+
