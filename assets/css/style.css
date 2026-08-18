@@ -269,6 +269,10 @@ img {
   max-width: 1240px;
   margin: auto
 }
+.sec-container{
+  max-width: 350px;
+  margin: auto
+}
 
 .section-title {
   text-align: center;
@@ -292,6 +296,11 @@ img {
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 24px
+}
+.brid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 24px
 }
 
@@ -349,7 +358,7 @@ img {
 }
 
 .image-card .content {
-  padding: 22px
+  padding: 10px
 }
 
 .page-hero {
@@ -827,7 +836,10 @@ body {
 .wide-menu {
   min-width: 260px
 }
-
+.sec-contact{
+  background: linear-gradient(135deg, #fff, #fff7df);
+  text-align: center
+}
 .home-contact {
   background: linear-gradient(135deg, #fff, #fff7df);
   text-align: center
